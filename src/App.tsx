@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { LoadingScreen } from './components/LoadingScreen';
 import { ChapterSelect } from './components/ChapterSelect';
 import { GamePlay } from './components/GamePlay';
+import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { useGameData } from './hooks/useGameData';
 
 // 内部应用组件，在 Router 上下文内处理数据加载
@@ -32,6 +33,7 @@ const AppContent: React.FC = () => {
       <Route path="/loading" element={<LoadingScreen />} />
       <Route path="/chapters" element={<ChapterSelect />} />
       <Route path="/game/:chapterId/:levelId" element={<GamePlay />} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="*" element={<Navigate to="/chapters" replace />} />
     </Routes>
   );
