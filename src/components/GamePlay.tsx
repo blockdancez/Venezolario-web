@@ -4,6 +4,7 @@ import { Home, Lightbulb, Plus } from 'lucide-react';
 import { InputStatus } from '../types/game';
 import { useGameData } from '../hooks/useGameData';
 import { useGameProgress } from '../hooks/useGameProgress';
+import coin from '../assets/coin.png';
 
 export const GamePlay: React.FC = () => {
   const { chapterId, levelId } = useParams<{ chapterId: string; levelId: string }>();
@@ -250,7 +251,7 @@ export const GamePlay: React.FC = () => {
 
           {/* 金币显示 */}
           <div className="flex items-center bg-gradient-to-r from-yellow-400 to-orange-400 rounded-xl px-3 py-2 shadow-lg">
-            <img src="@coin.png" alt="coins" className="w-5 h-5 mr-1" />
+                         <img src={coin} alt="coins" className="w-5 h-5 mr-1" />
             <span className="font-bold text-white text-sm">{progress.coins}</span>
           </div>
         </div>
@@ -266,7 +267,7 @@ export const GamePlay: React.FC = () => {
               <h3 className="text-lg font-bold text-gray-800">Pistas</h3>
             </div>
             <div className="flex items-center space-x-2 text-sm text-gray-500">
-                             <img src="@coin.png" alt="coins" className="w-4 h-4" />
+                             <img src={coin} alt="coins" className="w-4 h-4" />
               <span>25 por pista</span>
             </div>
           </div>
@@ -312,7 +313,7 @@ export const GamePlay: React.FC = () => {
                       >
                         <Plus className="w-3 h-3" />
                         <span>25</span>
-                                                 <img src="@coin.png" alt="coins" className="w-3 h-3" />
+                                                 <img src={coin} alt="coins" className="w-3 h-3" />
                       </button>
                     </div>
                   ) : (
@@ -437,7 +438,7 @@ export const GamePlay: React.FC = () => {
               
               {/* 金币奖励显示 */}
               <div className="flex items-center justify-center space-x-2 bg-gradient-to-r from-yellow-100 to-orange-100 rounded-lg p-3">
-                                 <img src="@coin.png" alt="coins" className="w-6 h-6" />
+                                  <img src={coin} alt="coins" className="w-6 h-6" />
                 <span className="font-bold text-yellow-700 text-lg">+50</span>
               </div>
             </div>
