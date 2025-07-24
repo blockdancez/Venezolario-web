@@ -11,7 +11,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { useGameData } from '../hooks/useGameData';
 import { useGameProgress } from '../hooks/useGameProgress';
-import { Footer } from './Footer';
 
 export const ChapterSelect: React.FC = () => {
   const { chapters, getLevelsForChapter } = useGameData();
@@ -232,9 +231,6 @@ export const ChapterSelect: React.FC = () => {
 
         </div>
       </div>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }; 
