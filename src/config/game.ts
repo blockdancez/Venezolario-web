@@ -18,7 +18,7 @@ export const TEMP_DATA_CONFIG = {
       unlockedLevels: 0,  // 将根据实际完成情况计算
       totalLevels: 49,
       completed: false,
-      iconPath: '/static/page_1.png'
+      iconPath: '/assets/page_1.png'
     },
     {
       id: 'misifu',
@@ -28,7 +28,7 @@ export const TEMP_DATA_CONFIG = {
       unlockedLevels: 0,
       totalLevels: 5,
       completed: false,
-      iconPath: '/static/page_2.png'
+      iconPath: '/assets/page_2.png'
     }
   ],
   levels: {
