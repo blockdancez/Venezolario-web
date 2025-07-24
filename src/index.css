@@ -1,0 +1,214 @@
+/* 全局字体和基础样式 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #E8F4FD;
+}
+
+/* 防止图片拖拽 */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
+
+/* 自定义动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 游戏特定样式 */
+.game-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.game-input-box {
+  transition: all 0.3s ease-in-out;
+}
+
+.game-input-box.current {
+  box-shadow: 0 0 0 2px #4F8BFF;
+}
+
+.game-input-box.correct {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.game-input-box.incorrect {
+  background-color: #F44336;
+  color: white;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+/* 虚拟键盘样式 */
+.virtual-keyboard {
+  user-select: none;
+}
+
+.virtual-key {
+  transition: all 0.15s ease-in-out;
+}
+
+.virtual-key:active {
+  transform: scale(0.95);
+}
+
+/* 移动端优化 */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* 文本截断工具类 */
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* 响应式文字大小 */
+@media (max-width: 480px) {
+  .text-responsive {
+    font-size: 14px;
+  }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+  .touchable {
+    min-height: 44px; /* iOS触摸目标最小尺寸 */
+    min-width: 44px;
+  }
+  
+  button {
+    min-height: 40px;
+  }
+}
+
+/* Swiper自定义样式 */
+.chapter-swiper {
+  padding-bottom: 3rem !important;
+}
+
+.chapter-swiper .swiper-pagination {
+  bottom: 1rem !important;
+}
+
+.chapter-swiper .swiper-pagination-bullet {
+  margin: 0 4px !important;
+}
+
+/* 移动端优化Swiper分页器 */
+@media (max-width: 640px) {
+  .chapter-swiper {
+    padding-bottom: 2.5rem !important;
+  }
+  
+  .chapter-swiper .swiper-pagination {
+    bottom: 0.5rem !important;
+  }
+  
+  .chapter-swiper .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    margin: 0 3px !important;
+  }
+  
+  .chapter-swiper .swiper-pagination-bullet-active {
+    transform: scale(1.2) !important;
+  }
+}
+
+/* 加载动画 */
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} 
