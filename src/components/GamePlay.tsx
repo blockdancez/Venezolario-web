@@ -402,21 +402,24 @@ export const GamePlay: React.FC = () => {
               </div>
         </div>
 
-        {/* 虚拟键盘 */}
-        <div className="bg-white rounded-2xl p-3 sm:p-4 shadow-xl border border-gray-100">
-          <div className="space-y-2">
+        </div>
+
+      {/* 虚拟键盘 - 全页面宽度 */}
+      <div className="w-full bg-white border-t border-gray-200 p-4 sm:p-5">
+        <div className="max-w-lg mx-auto">
+          <div className="space-y-2 sm:space-y-3">
             {keyboardRows.map((row, rowIndex) => (
-              <div key={rowIndex} className="flex justify-center gap-1">
+              <div key={rowIndex} className="flex justify-center gap-1 sm:gap-2">
                 {row.map((key) => (
                   <button
                     key={key}
                     onClick={() => handleVirtualKeyPress(key)}
                     className={`
-                      ${key === 'BACKSPACE' ? 'px-2 sm:px-3' : 'px-1 sm:px-2'} py-2 sm:py-3 
-                      bg-gray-50 border border-gray-200 text-gray-700 font-semibold text-xs sm:text-sm rounded-lg 
+                      ${key === 'BACKSPACE' ? 'px-3 sm:px-4' : 'px-2 sm:px-3'} py-3 sm:py-4 
+                      bg-gray-50 border border-gray-200 text-gray-700 font-semibold text-sm sm:text-base rounded-lg 
                       hover:bg-blue-50 hover:border-blue-300 transition-all duration-200
-                      min-w-[28px] sm:min-w-[36px] max-w-[34px] sm:max-w-[44px] flex items-center justify-center
-                      active:bg-blue-100 transform active:scale-95 min-h-[40px] sm:min-h-[44px]
+                      min-w-[36px] sm:min-w-[44px] max-w-[42px] sm:max-w-[52px] flex items-center justify-center
+                      active:bg-blue-100 transform active:scale-95 min-h-[48px] sm:min-h-[52px]
                     `}
                   >
                     {key === 'BACKSPACE' ? '⌫' : key}
@@ -425,7 +428,6 @@ export const GamePlay: React.FC = () => {
               </div>
             ))}
           </div>
-          
         </div>
 
         {/* 成功消息 */}
