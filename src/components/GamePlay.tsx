@@ -404,23 +404,35 @@ export const GamePlay: React.FC = () => {
 
         </div>
 
-      {/* 虚拟键盘 - 全页面宽度 */}
-      <div className="w-full bg-white border-t border-gray-200 p-4 sm:p-5">
-        <div className="max-w-lg mx-auto">
-          <div className="space-y-2 sm:space-y-3">
+      {/* 虚拟键盘 - 全页面宽度，适配所有手机屏幕 */}
+      <div className="w-full bg-white border-t border-gray-200 px-2 py-3 xs:px-3 xs:py-4 sm:px-4 sm:py-5 safe-area-bottom">
+        <div className="max-w-md mx-auto">
+          <div className="space-y-1.5 xs:space-y-2 sm:space-y-3">
             {keyboardRows.map((row, rowIndex) => (
-              <div key={rowIndex} className="flex justify-center gap-1 sm:gap-2">
+              <div key={rowIndex} className="flex justify-center gap-0.5 xs:gap-1 sm:gap-2">
                 {row.map((key) => (
                   <button
                     key={key}
                     onClick={() => handleVirtualKeyPress(key)}
                     className={`
-                      ${key === 'BACKSPACE' ? 'px-3 sm:px-4' : 'px-2 sm:px-3'} py-3 sm:py-4 
-                      bg-gray-50 border border-gray-200 text-gray-700 font-semibold text-sm sm:text-base rounded-lg 
+                      ${key === 'BACKSPACE' 
+                        ? 'px-1.5 xs:px-2 sm:px-3 md:px-4' 
+                        : 'px-1 xs:px-1.5 sm:px-2 md:px-3'
+                      } 
+                      py-2.5 xs:py-3 sm:py-3.5 md:py-4 
+                      bg-gray-50 border border-gray-200 text-gray-700 font-semibold 
+                      text-xs xs:text-sm sm:text-base rounded-lg 
                       hover:bg-blue-50 hover:border-blue-300 transition-all duration-200
-                      min-w-[36px] sm:min-w-[44px] max-w-[42px] sm:max-w-[52px] flex items-center justify-center
-                      active:bg-blue-100 transform active:scale-95 min-h-[48px] sm:min-h-[52px]
+                      flex items-center justify-center
+                      active:bg-blue-100 transform active:scale-95 
+                      flex-1 max-w-[32px] xs:max-w-[36px] sm:max-w-[44px] md:max-w-[52px]
+                      min-h-[40px] xs:min-h-[44px] sm:min-h-[48px] md:min-h-[52px]
+                      touch-manipulation select-none
                     `}
+                    style={{
+                      // 动态计算最小宽度，确保在任何屏幕上都合适
+                      minWidth: key === 'BACKSPACE' ? 'calc(2 * (100vw - 32px) / 26)' : 'calc((100vw - 32px) / 26)'
+                    }}
                   >
                     {key === 'BACKSPACE' ? '⌫' : key}
                   </button>
