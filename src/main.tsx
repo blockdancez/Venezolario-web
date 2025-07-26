@@ -4,11 +4,11 @@ import App from './App.tsx'
 import './index.css'
 // 初始化Firebase
 import './config/firebase'
-// 初始化iframe保护
-import { defaultFrameProtection } from './utils/frameProtection'
+import { initIframeProtection, setAntiEmbedMeta } from './utils/iframe-protection'
 
-// 启动iframe保护
-defaultFrameProtection();
+// 初始化iframe保护
+initIframeProtection()
+setAntiEmbedMeta()
  
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
