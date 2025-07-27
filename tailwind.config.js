@@ -26,7 +26,14 @@ export default {
           'text-secondary': '#6B7280',
           success: '#10B981',
           error: '#EF4444',
-          warning: '#F59E0B'
+          warning: '#F59E0B',
+          orange: '#FF6B35'
+        },
+        // 委内瑞拉国旗颜色
+        venezuela: {
+          yellow: '#FFD700',  // 黄色
+          blue: '#0033A0',    // 蓝色
+          red: '#CE1126'      // 红色
         }
       },
       fontFamily: {
