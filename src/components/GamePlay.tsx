@@ -4,6 +4,7 @@ import { Home, Lightbulb, Plus } from 'lucide-react';
 import { InputStatus } from '../types/game';
 import { useGameData } from '../hooks/useGameData';
 import { useGameProgress } from '../hooks/useGameProgress';
+import { updatePageSEO, generateGamePageSEO } from '../utils/seo';
 import coin from '../assets/coin.png';
 
 export const GamePlay: React.FC = () => {
@@ -27,6 +28,22 @@ export const GamePlay: React.FC = () => {
   // 获取当前关卡
   const levels = getLevelsForChapter(chapterId || '');
   const currentLevel = levels.find(level => level.id === `${chapterId}-level-${levelId}`);
+  
+  // 当前章节信息
+  const currentChapter = chapters.find(chapter => chapter.id === chapterId);
+  
+  // 更新SEO信息
+  useEffect(() => {
+    if (currentLevel && currentChapter) {
+      const seoData = generateGamePageSEO(
+        currentChapter.title,
+        currentLevel.order,
+        currentLevel.answer,
+        currentLevel.hints[0]?.text || ''
+      );
+      updatePageSEO(seoData);
+    }
+  }, [currentLevel, currentChapter]);
   
   // 键盘输入处理
   const handleKeyPress = React.useCallback((key: string) => {
@@ -244,7 +261,7 @@ export const GamePlay: React.FC = () => {
 
           <div className="text-center flex-1">
             <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Nivel {currentLevel.order}
+              {currentChapter?.title} - Nivel {currentLevel.order}
             </h1>
             <p className="text-sm text-gray-500 font-medium">Adivina la palabra</p>
           </div>
@@ -264,7 +281,7 @@ export const GamePlay: React.FC = () => {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-2">
               <Lightbulb className="w-5 h-5 text-yellow-500" />
-              <h3 className="text-lg font-bold text-gray-800">Pistas</h3>
+              <h2 className="text-lg font-bold text-gray-800">Pistas</h2>
             </div>
             <div className="flex items-center space-x-2 text-sm text-gray-500">
                              <img src={coin} alt="coins" className="w-4 h-4" />
@@ -296,7 +313,13 @@ export const GamePlay: React.FC = () => {
                   </div>
                   
                   {isUnlocked ? (
-                    <p className="text-gray-700 leading-relaxed text-sm sm:text-base flex-1">{hint.text}</p>
+                    <div className="flex-1">
+                      {index === 0 ? (
+                        <h3 className="text-gray-700 leading-relaxed text-sm sm:text-base font-semibold">{hint.text}</h3>
+                      ) : (
+                        <p className="text-gray-700 leading-relaxed text-sm sm:text-base">{hint.text}</p>
+                      )}
+                    </div>
                   ) : isNextToUnlock ? (
                     <div className="flex items-center justify-between flex-1">
                       <p className="text-gray-400 leading-relaxed text-sm sm:text-base italic">Pista bloqueada</p>
@@ -328,7 +351,7 @@ export const GamePlay: React.FC = () => {
         {/* 输入区域 */}
         <div className="mb-6">
           <div className="text-center mb-4">
-            <h3 className="text-lg font-bold text-gray-800 mb-1">Tu respuesta</h3>
+            <h2 className="text-lg font-bold text-gray-800 mb-1">Tu respuesta</h2>
             <p className="text-gray-600 text-sm">Escribe la palabra letra por letra</p>
           </div>
           

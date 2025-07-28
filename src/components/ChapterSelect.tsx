@@ -11,11 +11,18 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { useGameData } from '../hooks/useGameData';
 import { useGameProgress } from '../hooks/useGameProgress';
+import { updatePageSEO, generateHomePageSEO } from '../utils/seo';
 
 export const ChapterSelect: React.FC = () => {
   const { chapters, getLevelsForChapter } = useGameData();
   const { progress, getChapterProgress, isChapterUnlocked } = useGameProgress();
   const navigate = useNavigate();
+
+  // 更新首页SEO信息
+  React.useEffect(() => {
+    const seoData = generateHomePageSEO();
+    updatePageSEO(seoData);
+  }, []);
 
   const handleChapterClick = (chapterId: string) => {
     if (isChapterUnlocked(chapterId)) {
@@ -95,7 +102,7 @@ export const ChapterSelect: React.FC = () => {
           {/* 欢迎区域 */}
           <div className="text-center mb-8 mt-6">
             <div className="text-6xl mb-4 animate-bounce">🇻🇪</div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">¡Bienvenido!</h2>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">¡Bienvenido al Desafío de Palabras Vzla!</h2>
             <p className="text-gray-600 px-4">
               Descubre las palabras más típicas de Venezuela
             </p>
@@ -255,20 +262,18 @@ export const ChapterSelect: React.FC = () => {
                         <path d="M12 2L13.09 6.26L17 4.27L15.64 8.81L20 7.5L17.81 11.5L22 11L18.27 14.14L21 17L16.5 16.27L17.5 20L13 17.77L12 22L11 17.77L6.5 20L7.5 16.27L3 17L5.73 14.14L2 11L6.19 11.5L4 7.5L8.36 8.81L7 4.27L10.91 6.26L12 2Z"></path>
                     </svg>
                 </div>
-                <h1 className="text-5xl font-bold bg-gradient-to-r from-game-orange to-venezuela-red bg-clip-text text-transparent mb-4">
-                    Venezolario: Palabras Vzla
-                </h1>
-                <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Immerse yourself in Venezuelan culture through the ultimate word puzzle experience
-                </p>
             </div>
             <section className="mb-16 animate-slide-up">
                 <div className="max-w-4xl mx-auto text-center mb-8">
-                    <h2 className="text-4xl font-bold text-gray-800 mb-6">
-                        Welcome to <span className="text-game-orange">Venezolario: Palabras Vzla</span>
+                    <p className="text-xl text-gray-600 leading-relaxed mb-6">
+                        ¿Listo para una aventura lingüística única? Nuestra versión Venezolario web está disponible para todos. ¡Incluso puedes descargar la Venezolario APK para Android o buscar Venezolario App Store para iOS y llevar la diversión en tu bolsillo! No hay excusas para no sumergirte en este Venezolario infusion.
+                    </p>
+                    
+                    <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                        Supera Todos los Niveles de Venezolario
                     </h2>
                     <p className="text-xl text-gray-600 leading-relaxed">
-                        Discover the engaging Venezuelan word puzzle game that combines entertainment with cultural education. This platform offers an immersive journey through Venezuela's linguistic heritage, featuring authentic words and expressions that define Venezuelan culture.
+                        Usa las monedas que ganes en el juego para obtener más pistas — ¡Tu verdadera Venezolario guía e inspirarte con nuevas ideas! También puedes explorar TikTok, donde muchos jugadores comparten sus experiencias y las últimas Venezolario respuestas.
                     </p>
                 </div>
             </section>
@@ -276,29 +281,29 @@ export const ChapterSelect: React.FC = () => {
             <section className="mb-16">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold text-gray-800 mb-6">
-                        Venezolario: Palabras Vzla Game Features
+                        Características del Juego Venezolario: Palabras Vzla
                     </h2>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-venezuela-yellow">
-                        <h3 className="text-xl font-bold text-gray-800 mb-3">Authentic Venezuelan Content</h3>
-                        <p className="text-gray-600">Features hundreds of genuine Venezuelan words, phrases, and cultural expressions carefully curated to represent Venezuelan language and culture.</p>
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">Contenido Auténticamente Venezolano</h3>
+                        <p className="text-gray-600">Presenta cientos de palabras, frases y expresiones culturales venezolanas genuinas, cuidadosamente seleccionadas para representar el idioma y la cultura venezolanos.</p>
                     </div>
                     
                     <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-venezuela-blue">
-                        <h3 className="text-xl font-bold text-gray-800 mb-3">Collectible Cultural Cards</h3>
-                        <p className="text-gray-600">Unlock special cards featuring iconic Venezuelan characters, traditional foods, and cultural symbols as you progress.</p>
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">Cartas Culturales Coleccionables</h3>
+                        <p className="text-gray-600">Desbloquea cartas especiales con personajes icónicos venezolanos, comidas tradicionales y símbolos culturales mientras progresas.</p>
                     </div>
                     
                     <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-venezuela-red">
-                        <h3 className="text-xl font-bold text-gray-800 mb-3">Weekly Tournaments</h3>
-                        <p className="text-gray-600">Compete in exciting tournaments that test your knowledge of Venezuelan culture and language through challenging puzzles.</p>
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">Torneos Semanales</h3>
+                        <p className="text-gray-600">Compite en emocionantes torneos que ponen a prueba tu conocimiento de la cultura y el idioma venezolanos a través de desafiantes acertijos.</p>
                     </div>
                     
                     <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-game-orange">
-                        <h3 className="text-xl font-bold text-gray-800 mb-3">Venezuelan Dictionary</h3>
-                        <p className="text-gray-600">Access comprehensive dictionary to learn meanings and origins of traditional expressions and contemporary slang.</p>
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">Diccionario Venezolano</h3>
+                        <p className="text-gray-600">Accede a un diccionario completo para aprender significados y orígenes de expresiones tradicionales y jerga contemporánea.</p>
                     </div>
                 </div>
             </section>
@@ -307,16 +312,16 @@ export const ChapterSelect: React.FC = () => {
                 <div className="bg-gradient-to-r from-game-orange/5 to-venezuela-yellow/5 rounded-3xl p-8 border border-game-orange/20">
                     <div className="text-center mb-8">
                         <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                            How to Play <span className="text-game-orange">Venezolario: Palabras Vzla</span>
+                            Cómo Jugar <span className="text-game-orange">Venezolario: Palabras Vzla</span>
                         </h2>
                     </div>
                     
                     <div className="max-w-3xl mx-auto">
                         <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                            Playing the Venezuelan word puzzle is simple yet challenging. The game presents clues and hints that guide you toward guessing Venezuelan words or phrases. Each correct answer unlocks points, achievements, and collectible items.
+                            Jugar el acertijo de palabras venezolanas es simple pero desafiante. El juego presenta pistas y sugerencias que te guían hacia adivinar palabras o frases venezolanas. Cada respuesta correcta desbloquea puntos, logros y elementos coleccionables.
                         </p>
                         <p className="text-gray-600 leading-relaxed">
-                            The intuitive interface makes it accessible for all ages, while progressive difficulty ensures both beginners and experts find appropriate challenges.
+                            La interfaz intuitiva lo hace accesible para todas las edades, mientras que la dificultad progresiva asegura que tanto principiantes como expertos encuentren desafíos apropiados.
                         </p>
                     </div>
                 </div>
@@ -325,24 +330,24 @@ export const ChapterSelect: React.FC = () => {
             <section className="mb-16">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold text-gray-800 mb-6">
-                        Venezolario: Palabras Vzla Educational Value
+                        Valor Educativo de Venezolario: Palabras Vzla
                     </h2>
                 </div>
                 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="bg-white rounded-2xl p-6 shadow-lg text-center">
-                        <h3 className="text-xl font-bold text-gray-800 mb-3">For Parents</h3>
-                        <p className="text-gray-600">This Venezuelan word puzzle serves as an educational tool that preserves and promotes Venezuelan linguistic heritage for children.</p>
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">Para Padres</h3>
+                        <p className="text-gray-600">Este acertijo de palabras venezolanas sirve como una herramienta educativa que preserva y promueve el patrimonio lingüístico venezolano para los niños.</p>
                     </div>
                     
                     <div className="bg-white rounded-2xl p-6 shadow-lg text-center">
-                        <h3 className="text-xl font-bold text-gray-800 mb-3">For Educators</h3>
-                        <p className="text-gray-600">Teachers embrace this platform as a resource for interactive cultural education and Spanish language learning.</p>
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">Para Educadores</h3>
+                        <p className="text-gray-600">Los maestros adoptan esta plataforma como un recurso para la educación cultural interactiva y el aprendizaje del idioma español.</p>
                     </div>
                     
                     <div className="bg-white rounded-2xl p-6 shadow-lg text-center">
-                        <h3 className="text-xl font-bold text-gray-800 mb-3">For Learners</h3>
-                        <p className="text-gray-600">Language enthusiasts use this tool to expand understanding of Latin American Spanish variations and Venezuelan heritage.</p>
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">Para Estudiantes</h3>
+                        <p className="text-gray-600">Los entusiastas del idioma usan esta herramienta para expandir la comprensión de las variaciones del español latinoamericano y el patrimonio venezolano.</p>
                     </div>
                 </div>
             </section>
@@ -351,13 +356,13 @@ export const ChapterSelect: React.FC = () => {
                 <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 border border-gray-200">
                     <div className="max-w-4xl mx-auto text-center">
                         <h2 className="text-4xl font-bold text-gray-800 mb-6">
-                            Venezolario: Palabras Vzla Community Impact
+                            Impacto Comunitario de Venezolario: Palabras Vzla
                         </h2>
                         <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                            The community represents a global network of players connected by shared interest in Venezuelan culture. Through this platform, players worldwide discover Venezuelan expressions and traditions.
+                            La comunidad representa una red global de jugadores conectados por un interés compartido en la cultura venezolana. A través de esta plataforma, jugadores de todo el mundo descubren expresiones y tradiciones venezolanas.
                         </p>
-                        <p className  ="text-gray-600 leading-relaxed">
-                            Many players report that this platform has helped them reconnect with their Venezuelan heritage or introduced them to aspects of culture they never knew existed.
+                        <p className="text-gray-600 leading-relaxed">
+                            Muchos jugadores reportan que esta plataforma les ha ayudado a reconectarse con su herencia venezolana o les ha presentado aspectos de la cultura que nunca supieron que existían.
                         </p>
                     </div>
                 </div>
@@ -367,10 +372,10 @@ export const ChapterSelect: React.FC = () => {
                 <div className="bg-gradient-to-r from-game-orange to-venezuela-red rounded-3xl p-8 text-center text-white relative overflow-hidden">
                     <div className="relative z-10">
                         <h2 className="text-3xl font-bold mb-4">
-                            Start Your Cultural Journey Today
+                            Comienza Tu Viaje Cultural Hoy
                         </h2>
                         <p className="text-lg mb-6 max-w-2xl mx-auto">
-                            Join thousands of players who have discovered the joy of Venezuelan word puzzles. Learn about culture, improve vocabulary, and enjoy challenging games.
+                            Únete a miles de jugadores que han descubierto la alegría de los acertijos de palabras venezolanas. Aprende sobre la cultura, mejora tu vocabulario y disfruta de juegos desafiantes.
                         </p>
                         <button 
                             onClick={scrollToTop}
@@ -379,7 +384,7 @@ export const ChapterSelect: React.FC = () => {
                             <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z"></path>
                             </svg>
-                            Play Game Now
+                            Jugar Ahora
                         </button>
                     </div>
                 </div>
@@ -388,53 +393,53 @@ export const ChapterSelect: React.FC = () => {
             <section className="mb-16">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold text-gray-800 mb-6">
-                        Frequently Asked Questions
+                        Preguntas Frecuentes
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Get answers to common questions about this Venezuelan word puzzle game
+                        Obtén respuestas a preguntas comunes sobre este juego de acertijos de palabras venezolanas
                     </p>
                 </div>
 
                 <div className="max-w-4xl mx-auto space-y-6">
                     <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                        <h3 className="text-xl font-bold text-gray-800 mb-3">What is Venezolario: Palabras Vzla?</h3>
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">¿Qué es Venezolario: Palabras Vzla?</h3>
                         <p className="text-gray-600 leading-relaxed">
-                            This is an engaging Venezuelan word puzzle game that combines entertainment with cultural education. It features authentic Venezuelan vocabulary, expressions, and cultural references that help players learn about Venezuela's rich linguistic heritage while having fun solving word puzzles.
+                            Este es un emocionante juego de acertijos de palabras venezolanas que combina entretenimiento con educación cultural. Presenta vocabulario venezolano auténtico, expresiones y referencias culturales que ayudan a los jugadores a aprender sobre la rica herencia lingüística de Venezuela mientras se divierten resolviendo acertijos de palabras.
                         </p>
                     </div>
 
                     <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                        <h3 className="text-xl font-bold text-gray-800 mb-3">How do I play this Venezuelan word puzzle?</h3>
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">¿Cómo juego este acertijo de palabras venezolanas?</h3>
                         <p className="text-gray-600 leading-relaxed">
-                            Playing is simple! The game presents you with clues and hints that guide you toward guessing Venezuelan words or phrases. Use your knowledge of Venezuelan culture and language to solve each puzzle. The intuitive interface makes it easy for players of all ages to enjoy the challenge.
+                            ¡Jugar es simple! El juego te presenta pistas y sugerencias que te guían hacia adivinar palabras o frases venezolanas. Usa tu conocimiento de la cultura y el idioma venezolano para resolver cada acertijo. La interfaz intuitiva hace fácil que jugadores de todas las edades disfruten el desafío.
                         </p>
                     </div>
 
                     <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                        <h3 className="text-xl font-bold text-gray-800 mb-3">What are collectible cultural cards?</h3>
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">¿Qué son las cartas culturales coleccionables?</h3>
                         <p className="text-gray-600 leading-relaxed">
-                            As you progress through the word puzzles, you unlock special collectible cards featuring iconic Venezuelan characters, traditional foods, cultural symbols, and famous landmarks. These cards serve as both rewards and educational tools, helping you learn more about Venezuelan culture and heritage.
+                            Mientras progresas a través de los acertijos de palabras, desbloqueas cartas coleccionables especiales que presentan personajes icónicos venezolanos, comidas tradicionales, símbolos culturales y lugares famosos. Estas cartas sirven tanto como recompensas como herramientas educativas, ayudándote a aprender más sobre la cultura y herencia venezolana.
                         </p>
                     </div>
 
                       <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                        <h3 className="text-xl font-bold text-gray-800 mb-3">Are there tournaments in the game?</h3>
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">¿Hay torneos en el juego?</h3>
                         <p className="text-gray-600 leading-relaxed">
-                            Yes! The platform features exciting weekly tournaments where you can compete against other players from around the world. These tournaments test your knowledge of Venezuelan culture and language through increasingly challenging word puzzles, creating a fun competitive environment for all participants.
+                            ¡Sí! La plataforma presenta emocionantes torneos semanales donde puedes competir contra otros jugadores de todo el mundo. Estos torneos ponen a prueba tu conocimiento de la cultura y el idioma venezolano a través de acertijos de palabras cada vez más desafiantes, creando un ambiente competitivo divertido para todos los participantes.
                         </p>
                     </div>
 
                     <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                        <h3 className="text-xl font-bold text-gray-800 mb-3">Is this game educational?</h3>
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">¿Es este juego educativo?</h3>
                         <p className="text-gray-600 leading-relaxed">
-                            Absolutely! Beyond entertainment, this Venezuelan word puzzle serves as a valuable educational tool. Teachers use it for interactive cultural education, parents share it with children to teach Venezuelan heritage, and language enthusiasts employ it to expand their understanding of Latin American Spanish variations and Venezuelan cultural expressions.
+                            ¡Absolutamente! Más allá del entretenimiento, este acertijo de palabras venezolanas sirve como una valiosa herramienta educativa. Los maestros lo usan para educación cultural interactiva, los padres lo comparten con sus hijos para enseñar el patrimonio venezolano, y los entusiastas del idioma lo emplean para expandir su comprensión de las variaciones del español latinoamericano y las expresiones culturales venezolanas.
                         </p>
                     </div>
 
                     <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                        <h3 className="text-xl font-bold text-gray-800 mb-3">Can I access a Venezuelan dictionary?</h3>
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">¿Puedo acceder a un diccionario venezolano?</h3>
                         <p className="text-gray-600 leading-relaxed">
-                            Yes! The game includes access to a comprehensive Venezuelan Dictionary where you can learn the meanings and origins of traditional expressions and contemporary slang featured in the puzzles. This dictionary serves as both a learning tool and reference guide for understanding Venezuelan linguistic culture.
+                            ¡Sí! El juego incluye acceso a un Diccionario Venezolano completo donde puedes aprender los significados y orígenes de expresiones tradicionales y jerga contemporánea que aparece en los acertijos. Este diccionario sirve tanto como herramienta de aprendizaje como guía de referencia para entender la cultura lingüística venezolana.
                         </p>
                     </div>
                 </div>
